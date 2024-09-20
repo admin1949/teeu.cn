@@ -12,7 +12,7 @@ const strings = ["写写代码。", "吹吹牛。", "看看文档"];
       <div>我是Mingjian，</div>
       <div>一个前端工程师，</div>
       <div>写 <span class="code">Typescript/Vue</span> 的。</div>
-      <div>喜欢简约设计 🌞，</div>
+      <div>喜欢简约设计 🪐，</div>
       <span>偶尔</span>
     </TypedJsBox>
     <LottieAnimation style="width: 300px; height: 300px" :src="animationSrc" />
