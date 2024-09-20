@@ -7,6 +7,7 @@ const strings = ["写写代码。", "吹吹牛。", "看看文档"];
 </script>
 
 <template>
+  <nav></nav>
   <div class="body">
     <TypedJsBox class="title-box" tag="span" :strings :type-speed="90">
       <div>我是Mingjian，</div>
