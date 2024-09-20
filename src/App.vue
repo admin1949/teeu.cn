@@ -3,7 +3,7 @@ import LottieAnimation from "./components/LottieAnimation.vue";
 import animationSrc from "./assets/animation.json?url";
 import TypedJsBox from "./components/TypedJsBox.vue";
 
-const strings = ["写写代码。", "吹吹牛。", "看看文档"];
+const strings = ["写写代码。", "吹吹牛。", "看看文档。"];
 </script>
 
 <template>
