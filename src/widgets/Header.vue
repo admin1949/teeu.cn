@@ -113,6 +113,12 @@ const handleScrollTo = (query: string, hide = false) => {
 
 .header {
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--c-bg);
+  z-index: 2;
+  box-shadow: var(--shadow-2);
   .wrapper {
     padding: 0 8px 0 24px;
     .container {
