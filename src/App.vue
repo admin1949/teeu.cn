@@ -2,12 +2,14 @@
 import LottieAnimation from "./components/LottieAnimation.vue";
 import animationSrc from "./assets/animation.json?url";
 import TypedJsBox from "./components/TypedJsBox.vue";
+import Header from "@/widgets/Header.vue";
+import Footer from "./widgets/Footer.vue";
 
-const strings = ["写写代码。", "吹吹牛。", "看看文档。"];
+const strings = ["写写代码。", "吹吹牛。", "看看书。"];
 </script>
 
 <template>
-  <nav></nav>
+  <Header />
   <div class="body">
     <TypedJsBox class="title-box" tag="span" :strings :type-speed="90">
       <div>我是Mingjian</div>
@@ -18,27 +20,10 @@ const strings = ["写写代码。", "吹吹牛。", "看看文档。"];
     </TypedJsBox>
     <LottieAnimation style="width: 300px; height: 300px" :src="animationSrc" />
   </div>
-  <div class="footer">
-    <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备2024098546号</a>
-  </div>
+  <Footer />
 </template>
 
-<style scoped>
-.title-box {
-  font-family: Heavy, Helvetica, Arial, sans-serif;
-  font-size: 32px;
-  font-weight: 600;
-  padding: 0 20px;
-}
-.title-box .code {
-  color: #61dafb;
-  transition: text-decoration 0.3s;
-}
-
-.title-box .code:hover {
-  text-decoration: underline;
-}
-
+<style lang="scss" scoped>
 .body {
   height: 0;
   flex: 1;
@@ -47,22 +32,18 @@ const strings = ["写写代码。", "吹吹牛。", "看看文档。"];
   align-items: center;
   justify-content: center;
   padding: 20px 0;
-}
-
-.footer {
-  background-color: #ececec;
-  padding: 20px;
-  width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-}
-.footer a {
-  text-decoration: none;
-  font-size: 14px;
-  color: #666;
-}
-.footer a:hover {
-  color: #ff6a00;
+  .title-box {
+    font-family: Heavy, Helvetica, Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    padding: 0 20px;
+    .code {
+      color: #61dafb;
+      transition: text-decoration 0.3s;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 </style>

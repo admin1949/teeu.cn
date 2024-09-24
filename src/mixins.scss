@@ -1,0 +1,69 @@
+/// @param {'light' | 'dark'} $theme
+@mixin system-theme($theme) {
+  @media (prefers-color-scheme: $theme) {
+    @content;
+  }
+}
+
+/// 文本n行溢出隐藏
+@mixin ellipsis-basic($clamp: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $clamp;
+}
+
+$devicesList: (
+  phone: (
+    320px,
+    480px,
+  ),
+  pad: (
+    481px,
+    768px,
+  ),
+  notebook: (
+    769px,
+    1024px,
+  ),
+  pc: (
+    1025px,
+    1200px,
+  ),
+  tv: 1201px,
+);
+
+@mixin screen($device) {
+  $bp: map-get(
+    $map: $devicesList,
+    $key: $device,
+  );
+
+  @if type-of($value: $bp) == "list" {
+    $min: nth(
+      $list: $bp,
+      $n: 1,
+    );
+    $max: nth(
+      $list: $bp,
+      $n: 2,
+    );
+
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $bp) {
+      @content;
+    }
+  }
+}
+
+@mixin screens($devices...) {
+  @each $device in $devices {
+    @include screen($device) {
+      @content;
+    }
+  }
+}
