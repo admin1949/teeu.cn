@@ -55,8 +55,8 @@
     }
   }
   .menu {
-    // opacity: 0;
-    // visibility: hidden;
+    opacity: 0;
+    visibility: hidden;
     transform: translate(0, 0);
     position: absolute;
     z-index: 2;
