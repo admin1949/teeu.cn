@@ -6,7 +6,7 @@
       alt=""
     />
     <a
-      href="weixin://dl/business/?appid=wxc4451c3701ddfd0d&path=%2Fpages%2Ffind-job%2Ffind-job.html&env_version=release"
+      href="weixin://dl/business/?appid=wxc4451c3701ddfd0d&path=/pages/find-job/find-job.html&env_version=release"
       >立即跳转</a
     >
     <div class="projcet-info">项目介绍</div>
