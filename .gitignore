@@ -14,6 +14,8 @@ dist-ssr
 
 docs/.vitepress/cache/*
 docs/.vitepress/dist/*
+src/auto-import.d.ts
+src/component.d.ts
 
 # Editor directories and files
 .vscode/*

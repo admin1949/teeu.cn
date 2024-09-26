@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import Header from "@/widgets/Header.vue";
-import Footer from "./widgets/Footer.vue";
 import Home from "@/widgets/Home.vue";
 import About from "@/widgets/About.vue";
 import Project from "@/widgets/Project.vue";
+import Me from "@/widgets/Me.vue";
 </script>
 
 <template>
@@ -12,8 +12,8 @@ import Project from "@/widgets/Project.vue";
     <Home />
     <About />
     <Project />
+    <Me />
   </div>
-  <Footer />
 </template>
 
 <style lang="scss" scoped>

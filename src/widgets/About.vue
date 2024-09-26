@@ -1,11 +1,6 @@
 <template>
   <div id="about">
-    <img
-      class="workspace"
-      src="@/assets/images/workspace.webp"
-      alt=""
-      srcset=""
-    />
+    <img class="workspace" src="@/assets/images/workspace.webp" />
     <div class="info">
       <div class="avatar">
         <img src="@/assets/images/avatar.png" alt="" srcset="" />
@@ -31,7 +26,8 @@ import SpecialButton from "@/components/SpecialButton.vue";
   padding-top: 60px;
   .workspace {
     width: 100%;
-    height: auto;
+    height: 360px;
+    object-fit: contain;
   }
   .info {
     padding: 40px 0;
@@ -39,7 +35,6 @@ import SpecialButton from "@/components/SpecialButton.vue";
     flex-direction: column;
     align-items: center;
     background: url("@/assets/images/bgspot.svg");
-    background-size: 100% auto;
     .avatar {
       width: 200px;
       height: 200px;

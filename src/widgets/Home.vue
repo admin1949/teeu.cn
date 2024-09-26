@@ -9,7 +9,7 @@
     </TypedJsBox>
     <div class="lottie-box">
       <LottieAnimation
-        style="width: 300px; height: 300px"
+        style="width: 400px; height: 400px"
         :src="animationSrc"
       />
     </div>
