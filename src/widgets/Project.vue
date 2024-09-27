@@ -7,7 +7,12 @@
     />
     <div class="projcet-info">项目介绍</div>
     <div class="project-list">
-      <div class="project-item" v-for="i in projects" :key="i.title">
+      <div
+        class="project-item"
+        v-for="(i, idx) in projects"
+        :key="i.title"
+        @click="openDialog($event, idx)"
+      >
         <div class="project-avater-container">
           <img
             class="project-avater"
@@ -18,21 +23,78 @@
         </div>
         <div class="project-info">
           <div class="name">{{ i.title }}</div>
-          <div class="skill-tags" v-if="i.tags.length">
-            {{ i.tags.join(" & ") }}
-          </div>
+          <ElTag
+            type="primary"
+            size="large"
+            class="skill-tags"
+            v-if="i.tags.length"
+            >{{ i.tags.join(" & ") }}</ElTag
+          >
           <div class="desc">
             {{ i.desc }}
           </div>
         </div>
       </div>
     </div>
+    <Dialog v-model="show" :click-point="position">
+      <template #header>
+        <div class="name">{{ activeProject ? activeProject.title : "" }}</div>
+      </template>
+      <ElScrollbar max-height="calc(100vh - 300px)">
+        <div v-if="activeProject" class="project-detail">
+          <ElTag
+            type="primary"
+            size="large"
+            class="skill-tags"
+            v-if="activeProject.tags.length"
+          >
+            {{ activeProject.tags.join(" & ") }}
+          </ElTag>
+          <img
+            class="avatar"
+            :src="activeProject.avatar"
+            :alt="activeProject.title"
+            srcset=""
+          />
+          <template v-if="activeProject.tags.length">
+            <div>技术栈</div>
+            <div class="tag-list">
+              <ElTag
+                v-for="i in activeProject.skillTags"
+                effect="dark"
+                type="primary"
+                >{{ i }}</ElTag
+              >
+            </div>
+          </template>
+          <div class="desc">{{ activeProject.desc }}</div>
+          <div class="info-pic-list">
+            <img
+              class="info-pic"
+              v-for="i in activeProject.pics"
+              :src="i"
+              alt=""
+            />
+          </div>
+        </div>
+      </ElScrollbar>
+    </Dialog>
   </div>
 </template>
 
 <script setup lang="ts">
 import zxpIcon from "@/assets/images/project/zxp.webp";
 import zxpQrcode from "@/assets/images/project/zxp-qrcode.png";
+import { ElScrollbar, ElTag } from "element-plus";
+
+interface ProjectInfo {
+  title: string;
+  avatar: string;
+  tags: string[];
+  skillTags: string[];
+  desc: string;
+  pics: string[];
+}
 
 const projects = [
   {
@@ -41,9 +103,18 @@ const projects = [
     tags: ["Mobile", "微信小程序"],
     skillTags: ["微信小程序", "Typescript", "@vue/reactivity", "TDesign"],
     desc: "为企业和灵活用工人员打造的在线求职零工平台，企业可在平台发布零工岗位需求，灵活用工人员能通过平台发布自己意向工作和报名零工岗位。",
-    pics: [zxpIcon, zxpQrcode],
+    pics: [zxpQrcode],
   },
 ];
+const activeProject = ref<ProjectInfo | null>(null);
+
+const show = ref(false);
+const position = ref<[y: number, x: number]>();
+const openDialog = (e: MouseEvent, idx: number) => {
+  position.value = [e.pageX, e.pageY];
+  show.value = !show.value;
+  activeProject.value = projects[idx];
+};
 </script>
 
 <style lang="scss" scoped>
@@ -112,6 +183,7 @@ const projects = [
       padding: 12px;
       transition: box-shadow ease 0.25s;
       border-radius: 12px;
+      cursor: pointer;
       &:hover {
         box-shadow: var(--shadow-3);
         .project-avater-container {
@@ -140,21 +212,48 @@ const projects = [
         align-items: flex-start;
         gap: 8px;
         padding-top: 8px;
-        .name {
-          font-weight: 700;
-          font-size: 18px;
-        }
-        .skill-tags {
-          background-color: #bae8e8;
-          padding: 2px 8px;
-          border-radius: 4px;
-          color: #fff;
-        }
-        .desc {
-          font-size: 14px;
-        }
       }
     }
+  }
+}
+.skill-tags {
+  font-size: 16px;
+}
+.name {
+  font-weight: 700;
+  font-size: 20px;
+}
+.desc {
+  font-size: 14px;
+}
+
+.project-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+
+  .avatar {
+    width: 100%;
+  }
+  .info-pic-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 16px 16px;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    .info-pic {
+      width: 100%;
+      box-shadow: var(--shadow-2);
+      border-radius: 4px;
+    }
+  }
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 }
 </style>
