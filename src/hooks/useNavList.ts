@@ -16,7 +16,7 @@ const DEAFULT_SIZE = () => ({
   top: "0",
 });
 
-export const useNavList = <T>(achorList: MaybeRef<T[]>) => {
+export const useNavList = <T>(achorList: MaybeRef<T[] | readonly T[]>) => {
   const activeIndex = ref(0);
   const navContainer = useTemplateRef<HTMLElement>("nav-list");
   const size = ref({

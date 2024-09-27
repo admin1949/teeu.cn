@@ -10,13 +10,20 @@
         大多数情况下，我正在处理一些网站 🕸️ 移动端 📱 小程序 📲。
         目前正在找工作。业余爱好宅在家里，也喜欢折腾服务器相关的东西。努力成为一个终身学习者。
       </div>
-      <SpecialButton>了解更多👇</SpecialButton>
+      <SpecialButton @click="gotoMore">了解更多👇</SpecialButton>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import SpecialButton from "@/components/SpecialButton.vue";
+import { useBodyScroll } from "@/hooks/useBodyScroll";
+
+const { active, scrollTo } = useBodyScroll();
+const gotoMore = () => {
+  scrollTo("#project");
+  active.value = "#project";
+};
 </script>
 
 <style lang="scss" scoped>

@@ -136,6 +136,7 @@ const closeDialog = () => {
         cursor: pointer;
         border-radius: 4px;
         transition: all ease 0.25s;
+        padding: 0;
         &:hover {
           background-color: rgba(0, 0, 0, 0.06);
           color: rgb(51, 51, 51);
@@ -153,7 +154,7 @@ const closeDialog = () => {
           width: 24px;
           height: 2px;
           .close-line {
-            height: 3px;
+            height: 100%;
             width: 100%;
             background-color: currentColor;
             position: absolute;

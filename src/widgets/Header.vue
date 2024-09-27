@@ -13,7 +13,7 @@
               :class="{ active: idx === activeIndex }"
               v-for="(i, idx) in achorList"
               :key="i.query"
-              @click="handleActiveIdx(idx)"
+              @click="handleScrollTo(idx, true)"
             >
               {{ i.name }}
             </div>
@@ -38,9 +38,9 @@
           <div class="list">
             <div class="menu-list">
               <a
-                v-for="i in achorList"
+                v-for="(i, idx) in achorList"
                 :key="i.query"
-                @click.stop="handleScrollTo(i.query, true)"
+                @click.stop="handleScrollTo(idx, true)"
                 class="list-item"
                 >{{ i.name }}</a
               >
@@ -77,35 +77,35 @@ import Hamburger from "@/components/Hamburger.vue";
 import { ref } from "vue";
 import { useNavList } from "@/hooks/useNavList.ts";
 import Extra from "@/components/Extra.vue";
+import { useBodyScroll } from "@/hooks/useBodyScroll";
 
 const open = ref(false);
 const handleChangeOpen = () => {
   open.value = !open.value;
 };
 
-const achorList = [
-  { name: "首页", query: "#home" },
-  { name: "关于", query: "#about" },
-  { name: "项目", query: "#project" },
-  { name: "联系", query: "#me" },
-];
+const { achorList, scrollTo, active } = useBodyScroll();
 const { handleActiveIdx, sizeStyle, activeIndex } = useNavList(achorList);
 
-const handleScrollTo = (query: string, hide = false) => {
-  const element = document.querySelector(query);
-  if (hide) {
-    open.value = false;
+watchEffect(() => {
+  const query = active.value;
+  const idx = achorList.findIndex((i) => i.query === query);
+  if (idx > -1) {
+    activeIndex.value = idx;
   }
+});
 
-  if (!element) {
+const handleScrollTo = (idx: number, hide = false) => {
+  const item = achorList[idx];
+  if (!item) {
     return;
   }
 
-  const top = element.clientTop - 20;
-  window.scrollTo({
-    top,
-    behavior: "smooth",
-  });
+  scrollTo(item.query);
+  handleActiveIdx(idx);
+  if (hide) {
+    open.value = false;
+  }
 };
 </script>
 <style lang="scss" scoped>
