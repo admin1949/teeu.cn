@@ -1,5 +1,4 @@
 import type { ScrollbarInstance } from "element-plus";
-import { lstat } from "fs";
 import { MaybeRef } from "vue";
 
 export const useBodyScroll = createGlobalState(() => {
