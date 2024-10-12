@@ -5,7 +5,7 @@
       class="cartoon-rocket"
       alt=""
     />
-    <div class="projcet-info">项目介绍</div>
+    <div class="projcet-info">项目介绍:</div>
     <div class="project-list">
       <div
         class="project-item"
@@ -67,6 +67,13 @@
               >
             </div>
           </template>
+          <ElLink
+            v-if="activeProject.link"
+            target="_blank"
+            :href="activeProject.link"
+            class="out-link"
+            >体验链接地址</ElLink
+          >
           <div class="desc">{{ activeProject.desc }}</div>
           <div class="info-pic-list">
             <img
@@ -85,7 +92,7 @@
 <script setup lang="ts">
 import zxpIcon from "@/assets/images/project/zxp.webp";
 import zxpQrcode from "@/assets/images/project/zxp-qrcode.png";
-import { ElScrollbar, ElTag } from "element-plus";
+import { ElLink, ElScrollbar, ElTag } from "element-plus";
 
 interface ProjectInfo {
   title: string;
@@ -93,10 +100,11 @@ interface ProjectInfo {
   tags: string[];
   skillTags: string[];
   desc: string;
+  link?: string;
   pics: string[];
 }
 
-const projects = [
+const projects: ProjectInfo[] = [
   {
     title: "舟小聘",
     avatar: zxpIcon,
@@ -104,6 +112,7 @@ const projects = [
     skillTags: ["微信小程序", "Typescript", "@vue/reactivity", "TDesign"],
     desc: "为企业和灵活用工人员打造的在线求职零工平台，企业可在平台发布零工岗位需求，灵活用工人员能通过平台发布自己意向工作和报名零工岗位。",
     pics: [zxpQrcode],
+    link: "2333",
   },
 ];
 const activeProject = ref<ProjectInfo | null>(null);
@@ -254,6 +263,9 @@ const openDialog = (e: MouseEvent, idx: number) => {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+  }
+  .out-link {
+    font-size: inherit;
   }
 }
 </style>

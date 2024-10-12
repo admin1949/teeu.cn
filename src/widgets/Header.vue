@@ -3,8 +3,7 @@
     <div class="wrapper">
       <div class="container">
         <div class="title">
-          <img src="@/assets/logo.svg" class="logo" alt="" />
-          <div>MJ</div>
+          <img src="@/assets/logo.png" class="logo" alt="" />
         </div>
         <div class="content">
           <div class="nav-list" ref="nav-list" :style="sizeStyle">
@@ -116,9 +115,16 @@ const handleScrollTo = (idx: number, hide = false) => {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: var(--c-bg);
   z-index: 2;
   box-shadow: var(--shadow-2);
+  background-image: radial-gradient(transparent 1px, var(--c-bg) 1px);
+  background-size: 4px 4px;
+  backdrop-filter: saturate(50%) blur(4px);
+  @media screen and (max-width: 768px) {
+    background-size: 6px 6px;
+    backdrop-filter: saturate(50%) blur(6px);
+  }
+
   .wrapper {
     padding: 0 8px 0 24px;
     .container {
@@ -130,8 +136,8 @@ const handleScrollTo = (idx: number, hide = false) => {
         height: var(--nav-height);
         font-weight: 700;
         .logo {
-          width: 24px;
-          height: 24px;
+          width: 34px;
+          height: 34px;
           object-fit: contain;
         }
       }
