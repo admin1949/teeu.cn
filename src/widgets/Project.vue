@@ -107,7 +107,7 @@ const resolveTags = (tag: string) => {
     .filter(Boolean)
     .map((i) => typeT(i, ""))
     .filter(Boolean)
-    .join("&");
+    .join(" & ");
 };
 load();
 const activeProject = ref<BlogVO | null>(null);
