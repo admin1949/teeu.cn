@@ -5,7 +5,7 @@
       class="cartoon-rocket"
       alt=""
     />
-    <div class="projcet-info">项目介绍:</div>
+    <div class="projcet-info">项目介绍</div>
     <div class="project-list">
       <div
         class="project-item"
@@ -16,7 +16,7 @@
         <div class="project-avater-container">
           <img
             class="project-avater"
-            :src="i.avatar"
+            :src="buildFilePath(i.avatar)"
             :alt="i.title"
             srcset=""
           />
@@ -28,7 +28,7 @@
             size="large"
             class="skill-tags"
             v-if="i.tags.length"
-            >{{ i.tags.join(" & ") }}</ElTag
+            >{{ resolveTags(i.tags) }}</ElTag
           >
           <div class="desc">
             {{ i.desc }}
@@ -48,23 +48,23 @@
             class="skill-tags"
             v-if="activeProject.tags.length"
           >
-            {{ activeProject.tags.join(" & ") }}
+            {{ resolveTags(activeProject.tags) }}
           </ElTag>
           <img
             class="avatar"
-            :src="activeProject.avatar"
+            :src="buildFilePath(activeProject.avatar)"
             :alt="activeProject.title"
             srcset=""
           />
           <template v-if="activeProject.tags.length">
             <div>技术栈</div>
             <div class="tag-list">
-              <ElTag
-                v-for="i in activeProject.skillTags"
+              <TagList
+                :keys="activeProject.skillTags"
                 effect="dark"
                 type="primary"
-                >{{ i }}</ElTag
-              >
+                :enum-key="REMOTE_ENUMS.SKILL_TAG"
+              ></TagList>
             </div>
           </template>
           <ElLink
@@ -79,7 +79,7 @@
             <img
               class="info-pic"
               v-for="i in activeProject.pics"
-              :src="i"
+              :src="buildFilePath(i)"
               alt=""
             />
           </div>
@@ -93,36 +93,33 @@
 import zxpIcon from "@/assets/images/project/zxp.webp";
 import zxpQrcode from "@/assets/images/project/zxp-qrcode.png";
 import { ElLink, ElScrollbar, ElTag } from "element-plus";
+import { queryBlogList, BlogVO } from "@/api/blog";
+import { useAsync } from "@/hooks/useAsync";
+import { REMOTE_ENUMS, useListDic } from "@/enums/useRemoteEnum";
+import { buildFilePath } from "@/utils/fs";
+import TagList from "@/components/TagList.vue";
 
-interface ProjectInfo {
-  title: string;
-  avatar: string;
-  tags: string[];
-  skillTags: string[];
-  desc: string;
-  link?: string;
-  pics: string[];
-}
-
-const projects: ProjectInfo[] = [
-  {
-    title: "舟小聘",
-    avatar: zxpIcon,
-    tags: ["Mobile", "微信小程序"],
-    skillTags: ["微信小程序", "Typescript", "@vue/reactivity", "TDesign"],
-    desc: "为企业和灵活用工人员打造的在线求职零工平台，企业可在平台发布零工岗位需求，灵活用工人员能通过平台发布自己意向工作和报名零工岗位。",
-    pics: [zxpQrcode],
-    link: "2333",
-  },
-];
-const activeProject = ref<ProjectInfo | null>(null);
+const { t: typeT } = useListDic(REMOTE_ENUMS.TYPE_TAG);
+const { data: projects, load } = useAsync(queryBlogList, (res) =>
+  res ? res.data : []
+);
+const resolveTags = (tag: string) => {
+  return tag
+    .split(",")
+    .filter(Boolean)
+    .map((i) => typeT(i, ""))
+    .filter(Boolean)
+    .join("&");
+};
+load();
+const activeProject = ref<BlogVO | null>(null);
 
 const show = ref(false);
 const position = ref<[y: number, x: number]>();
 const openDialog = (e: MouseEvent, idx: number) => {
   position.value = [e.pageX, e.pageY];
   show.value = !show.value;
-  activeProject.value = projects[idx];
+  activeProject.value = projects.value[idx];
 };
 </script>
 

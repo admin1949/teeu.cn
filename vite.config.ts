@@ -42,4 +42,19 @@ export default defineConfig({
       },
     },
   },
+  server: {
+    proxy: {
+      "/blank-api": {
+        target: "http://localhost:3001",
+        rewrite(path) {
+          return path.replace(/^\/blank-api/, "");
+        },
+        ws: true,
+      },
+      "/files": {
+        target: "http://localhost:10020",
+        ws: true,
+      },
+    },
+  },
 });
