@@ -41,14 +41,15 @@ const { open = false } = defineProps<{
     .bottom {
       position: absolute;
       background-color: rgba(60, 60, 67);
-      @include mixins.system-theme(dark) {
-        background-color: rgb(195, 195, 188);
-      }
       width: 16px;
       height: 2px;
       top: 0;
       left: 0;
       transition: background-color 0.5s, transform 0.25s;
+
+      @include mixins.system-theme(dark) {
+        background-color: rgb(195, 195, 188);
+      }
     }
 
     .middle {

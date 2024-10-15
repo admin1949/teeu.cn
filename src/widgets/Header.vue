@@ -226,12 +226,13 @@ const handleScrollTo = (idx: number, hide = false) => {
           font-size: 14px;
           font-weight: 500;
           color: rgb(60, 60, 67);
-          @include mixins.system-theme(dark) {
-            color: rgb(195, 195, 188);
-          }
           transition: border-color 0.25s, color 0.25s;
           cursor: pointer;
           text-decoration: none;
+
+          @include mixins.system-theme(dark) {
+            color: rgb(195, 195, 188);
+          }
         }
         .link-list {
           display: flex;

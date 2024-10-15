@@ -139,6 +139,7 @@ const isPhone = useMediaQuery("(max-width: 768px)");
       box-sizing: border-box;
       @media (max-width: 768px) {
         width: 100%;
+
         &.left {
           padding-left: 0;
           .top-contetn {
@@ -169,11 +170,13 @@ const isPhone = useMediaQuery("(max-width: 768px)");
         min-height: 80px;
         font-size: 14px;
         color: #252525;
+        width: 100%;
+        gap: 12px;
+
         @include mixins.system-theme(dark) {
           color: #eaeaea;
         }
-        width: 100%;
-        gap: 12px;
+
         .stack-list {
           width: 0;
           flex: 1;
