@@ -90,8 +90,6 @@
 </template>
 
 <script setup lang="ts">
-import zxpIcon from "@/assets/images/project/zxp.webp";
-import zxpQrcode from "@/assets/images/project/zxp-qrcode.png";
 import { ElLink, ElScrollbar, ElTag } from "element-plus";
 import { queryBlogList, BlogVO } from "@/api/blog";
 import { useAsync } from "@/hooks/useAsync";
