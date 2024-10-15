@@ -15,6 +15,8 @@ const { open = false } = defineProps<{
 </script>
 
 <style lang="scss" scoped>
+@use "@/mixins.scss";
+
 .hamburger {
   display: flex;
   justify-content: center;
@@ -39,6 +41,9 @@ const { open = false } = defineProps<{
     .bottom {
       position: absolute;
       background-color: rgba(60, 60, 67);
+      @include mixins.system-theme(dark) {
+        background-color: rgb(195, 195, 188);
+      }
       width: 16px;
       height: 2px;
       top: 0;

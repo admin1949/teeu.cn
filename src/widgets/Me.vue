@@ -123,6 +123,8 @@ const isPhone = useMediaQuery("(max-width: 768px)");
 </script>
 
 <style lang="scss" scoped>
+@use "@/mixins.scss";
+
 #me {
   width: 100%;
   padding: 0 16px 16px;
@@ -167,6 +169,9 @@ const isPhone = useMediaQuery("(max-width: 768px)");
         min-height: 80px;
         font-size: 14px;
         color: #252525;
+        @include mixins.system-theme(dark) {
+          color: #eaeaea;
+        }
         width: 100%;
         gap: 12px;
         .stack-list {
@@ -223,6 +228,9 @@ const isPhone = useMediaQuery("(max-width: 768px)");
       text-decoration: none;
       font-size: 14px;
       color: #666;
+      @include mixins.system-theme(dark) {
+        color: #999;
+      }
       &:hover {
         color: #ff6a00;
       }

@@ -118,12 +118,12 @@ const handleScrollTo = (idx: number, hide = false) => {
   z-index: 2;
   box-shadow: var(--shadow-2);
   background-image: radial-gradient(transparent 1px, var(--c-bg) 1px);
-  background-size: 4px 4px;
-  backdrop-filter: saturate(50%) blur(4px);
-  @media screen and (max-width: 768px) {
-    background-size: 6px 6px;
-    backdrop-filter: saturate(50%) blur(6px);
-  }
+  // background-size: 4px 4px;
+  // backdrop-filter: saturate(50%) blur(4px);
+  // @media screen and (max-width: 768px) {
+  //   background-size: 6px 6px;
+  //   backdrop-filter: saturate(50%) blur(6px);
+  // }
 
   .wrapper {
     padding: 0 8px 0 24px;
@@ -206,7 +206,7 @@ const handleScrollTo = (idx: number, hide = false) => {
     }
     .container {
       position: absolute;
-      background-color: #fff;
+      background-color: var(--c-bg);
       align-items: center;
       top: 0;
       left: 0;
@@ -225,7 +225,10 @@ const handleScrollTo = (idx: number, hide = false) => {
           line-height: 24px;
           font-size: 14px;
           font-weight: 500;
-          color: rgba(60, 60, 67);
+          color: rgb(60, 60, 67);
+          @include mixins.system-theme(dark) {
+            color: rgb(195, 195, 188);
+          }
           transition: border-color 0.25s, color 0.25s;
           cursor: pointer;
           text-decoration: none;

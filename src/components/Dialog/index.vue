@@ -113,7 +113,7 @@ const closeDialog = () => {
     top: 120px;
     border-radius: 8px;
     overflow: hidden;
-    background-color: #fff;
+    background-color: var(--c-bg);
     box-shadow: var(--shadow-3);
     transform-origin: var(--transform-origin);
     box-sizing: border-box;

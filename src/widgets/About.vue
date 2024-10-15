@@ -27,6 +27,8 @@ const gotoMore = () => {
 </script>
 
 <style lang="scss" scoped>
+@use "@/mixins.scss";
+
 #about {
   display: flex;
   flex-direction: column;
@@ -42,6 +44,9 @@ const gotoMore = () => {
     flex-direction: column;
     align-items: center;
     background: url("@/assets/images/bgspot.svg");
+    @include mixins.system-theme(dark) {
+      background: var(--c-bg);
+    }
     .avatar {
       width: 200px;
       height: 200px;

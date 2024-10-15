@@ -5,7 +5,9 @@
       class="cartoon-rocket"
       alt=""
     />
-    <div class="projcet-info">项目介绍</div>
+    <div class="projcet-info">
+      <div>项目介绍</div>
+    </div>
     <div class="project-list">
       <div
         class="project-item"
@@ -147,6 +149,14 @@ const openDialog = (e: MouseEvent, idx: number) => {
       #bae8e8 54%,
       #bae8e8 100%
     );
+
+    @include mixins.system-theme(dark) {
+      color: #ccc;
+      & > div {
+        mix-blend-mode: difference;
+      }
+    }
+
     &::after {
       content: "";
       display: block;

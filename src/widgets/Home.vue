@@ -28,7 +28,7 @@ const strings = ["写写代码。", "吹吹牛。", "看看书。"];
 @use "@/mixins.scss";
 
 #home {
-  background: url("@/assets/images/home-bg.svg");
+  background: url("@/assets/images/home-bg.svg"), var(--c-bg);
   display: flex;
   flex-direction: row;
   align-items: flex-start;
