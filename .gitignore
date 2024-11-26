@@ -27,3 +27,4 @@ src/component.d.ts
 *.njsproj
 *.sln
 *.sw?
+.npmrc
