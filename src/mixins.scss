@@ -1,3 +1,7 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:list";
+
 /// @param {'light' | 'dark'} $theme
 @mixin system-theme($theme) {
   @media (prefers-color-scheme: $theme) {
@@ -35,18 +39,18 @@ $devicesList: (
 );
 
 @mixin screen($device) {
-  $bp: map-get(
+  $bp: map.get(
     $map: $devicesList,
     $key: $device,
   );
 
-  @if type-of($value: $bp) == "list" {
-    $min: nth(
+  @if meta.type-of($value: $bp) == "list" {
+    $min: list.nth(
       $list: $bp,
       $n: 1,
     );
 
-    $max: nth(
+    $max: list.nth(
       $list: $bp,
       $n: 2,
     );
