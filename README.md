@@ -1,5 +1,12 @@
-# Vue 3 + TypeScript + Vite
+# teeu.cn 网站源代码
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+本网站前端使用 `Vue3` + `Typescript` + `Vite` + `Element-Plus` 构建  
+后端使用 `Typescript` + `NestJS` + `Mysql` + `Prisma` 构建
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## 起步
+
+```sh
+pnpm i
+
+pnpm build
+```

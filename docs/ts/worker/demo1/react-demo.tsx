@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState, FC } from "react";
-import React from "react";
+import React, { useEffect, useRef, useState, FC } from "react";
 import { Form, Input } from "antd";
 import demo1Url from "./worker?worker&url";
 

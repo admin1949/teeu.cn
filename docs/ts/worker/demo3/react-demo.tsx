@@ -1,5 +1,4 @@
-import { useEffect, useRef, FC, useState } from "react";
-import React from "react";
+import React, { useEffect, useRef, FC, useState } from "react";
 import { Button } from "antd";
 import demo2Url from "./worker/index?worker&url";
 import { Fns } from "./worker/worker-type";

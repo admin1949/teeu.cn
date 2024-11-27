@@ -1,8 +1,8 @@
 import { defineConfig } from "vitepress";
-import ElementPlus from "unplugin-element-plus/vite";
+// import ElementPlus from "unplugin-element-plus/vite";
 import { vitepressDemoPlugin } from 'vitepress-demo-plugin';
 import { resolve } from "node:path";
-// import Inspect from 'vite-plugin-inspect'
+import react from "@vitejs/plugin-react";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -57,15 +57,16 @@ export default defineConfig({
     }
   },
   vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          api: "modern-compiler",
-        },
-      },
-    },
+    // css: {
+    //   preprocessorOptions: {
+    //     scss: {
+    //       api: "modern-compiler",
+    //     },
+    //   },
+    // },
     plugins: [
-      ElementPlus({}),
+      // ElementPlus({}),
+      react(),
       // Inspect({}),
     ],
     resolve: {
@@ -74,18 +75,17 @@ export default defineConfig({
       }
     },
     ssr: {
-      noExternal: ['element-plus', "react", "react-dom"],
+      noExternal: ['element-plus', "react", "react-dom", "antd", "vitepress-demo-plugin"],
     },
     build: {
-      chunkSizeWarningLimit: 100,
       rollupOptions: {
-        onwarn(warning, warn) {
-          if (warning.code === "MODULE_LEVEL_DIRECTIVE") {
-            return;
-          }
-          warn(warning);
+        output: {
+          manualChunks: {
+            // vender: ["vue", "element-plus"],
+            "react-lib": ["react", "react-dom", "antd", "vitepress-demo-plugin"]
+          },
         },
       },
-    },
+    }
   }
 });
